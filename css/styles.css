@@ -152,16 +152,16 @@ button:hover {
 }
 
 /* 💡 Estilos para pantallas pequeñas (menores a 480px) */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 310px) {
     body {
         height: auto; /* Permite que la página se ajuste mejor */
         padding: 20px;
     }
 
     .sobre {
-        width: 90%; /* Ajusta el tamaño del sobre */
+        width: 60%; /* Ajusta el tamaño del sobre */
         height: auto;
-        max-width: 320px;
+        max-width: 310px;
     }
 
     .solapaSuperior, 
@@ -177,7 +177,7 @@ button:hover {
     }
 
     .carta {
-        width: 90%;
+        width: 60%;
         height: auto;
         padding: 15px;
         font-size: 16px; /* Reduce el tamaño del texto en móviles */
