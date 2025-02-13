@@ -150,3 +150,41 @@ button:hover {
 .open .solapaSuperior {
     z-index: 1;
 }
+
+/* 💡 Estilos para pantallas pequeñas (menores a 480px) */
+@media screen and (max-width: 480px) {
+    body {
+        height: auto; /* Permite que la página se ajuste mejor */
+        padding: 20px;
+    }
+
+    .sobre {
+        width: 90%; /* Ajusta el tamaño del sobre */
+        height: auto;
+        max-width: 320px;
+    }
+
+    .solapaSuperior, 
+    .solapaInferior, 
+    .solapaLaterales, 
+    .solapaFondo {
+        border-radius: 10px; /* Menos redondeado en pantallas pequeñas */
+    }
+
+    .solapaSuperior h2 {
+        font-size: 20px; /* Reduce el tamaño del texto */
+        margin-top: 10px;
+    }
+
+    .carta {
+        width: 90%;
+        height: auto;
+        padding: 15px;
+        font-size: 16px; /* Reduce el tamaño del texto en móviles */
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 14px; /* Botones más pequeños */
+    }
+}
