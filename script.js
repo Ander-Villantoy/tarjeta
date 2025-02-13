@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     buttons.forEach(button => {
         button.addEventListener("click", () => {
-            const action = button.textContent === "OPEN";
+            const action = button.textContent === "ABRIR";
             toggleEnvelope(action);
         });
     });
