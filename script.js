@@ -1,35 +1,82 @@
-document.addEventListener("DOMContentLoaded", () => {
+// script.js ajustado para que loop.mp3 solo funcione en tarjetas románticas
+document.addEventListener("DOMContentLoaded", async () => {
     const sobre = document.getElementById("sobre");
+    const solapas = document.querySelectorAll(".solapaSuperior, .solapaInferior, .solapaLaterales, .solapaFondo");
+    const textoSobre = document.querySelector(".solapaSuperior h2");
+    const textoCarta = document.querySelector(".carta .texto h2");
     const buttons = document.querySelectorAll("button");
-    let loopAudio = new Audio("audio/loop.mp3"); // Sonido en bucle
-    loopAudio.loop = true; // Hacer que el sonido se repita
+    let loopAudio = new Audio("audio/loop.mp3");
+    loopAudio.loop = true;
 
-    function playSound(filename) {
-        let audio = new Audio(`audio/${filename}`);
-        audio.play();
-    }
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
 
-    function toggleEnvelope(open) {
-        if (open) {
-            playSound("open.wav"); // Sonido de abrir
-            setTimeout(() => {
-                sobre.classList.add("open"); // Espera 1 segundo antes de abrir
-                loopAudio.play(); // Inicia el sonido en bucle
-            }, 250);
-        } else {
-            playSound("close.wav"); // Sonido de cerrar
-            setTimeout(() => {
-                sobre.classList.remove("open");
-                loopAudio.pause(); // Detiene el sonido en bucle
-                loopAudio.currentTime = 0; // Reinicia el audio para la próxima vez
-            }, 1000);
+    if (id) {
+        try {
+            let url;
+            if (window.location.origin.includes("github.io")) {
+                url = `${window.location.origin}/data/tarjetas.json`;
+            } else {
+                const path = window.location.pathname.replace(/\/index.html$/, '');
+                url = `${window.location.origin}${path}/data/tarjetas.json`;
+            }
+
+            const response = await fetch(url);
+            if (!response.ok) throw new Error('No se pudo cargar el archivo JSON.');
+            const data = await response.json();
+
+            const tarjeta = data[id];
+            if (!tarjeta) throw new Error('No se encontró la tarjeta con el ID proporcionado.');
+
+            textoSobre.textContent = `De: ${tarjeta.from}`;
+            textoCarta.textContent = `Para: ${tarjeta.to}`;
+            document.querySelector(".carta .texto p").innerHTML = tarjeta.msg.replace(/\\n/g, '<br>');
+
+            if (tarjeta.tipo === 'romántica') {
+                solapas.forEach(solapa => solapa.style.backgroundColor = '');
+                textoSobre.style.color = '';
+                textoCarta.style.color = '';
+            } else if (tarjeta.tipo === 'amistad') {
+                const verdes = ['#a8d5ba', '#8fcba9', '#76bf8a', '#5eb36b'];
+                solapas.forEach((solapa, index) => solapa.style.backgroundColor = verdes[index % verdes.length]);
+                textoSobre.style.color = '#a17c2b';
+                textoCarta.style.color = '#a17c2b';
+                buttons.forEach(button => button.classList.add('boton-amistad'));
+            } else if (tarjeta.color) {
+                solapas.forEach(solapa => solapa.style.backgroundColor = tarjeta.color);
+                textoSobre.style.color = '#000';
+                textoCarta.style.color = '#000';
+            }
+
+            function toggleEnvelope(open) {
+                if (open) {
+                    new Audio("audio/open.wav").play();
+                    setTimeout(() => {
+                        sobre.classList.add("open");
+                        if (tarjeta.tipo === 'romántica') loopAudio.play();
+                    }, 250);
+                } else {
+                    new Audio("audio/close.wav").play();
+                    setTimeout(() => {
+                        sobre.classList.remove("open");
+                        loopAudio.pause();
+                        loopAudio.currentTime = 0;
+                    }, 1000);
+                }
+            }
+
+            buttons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const action = button.textContent === "ABRIR";
+                    toggleEnvelope(action);
+                });
+            });
+
+        } catch (error) {
+            console.error(error);
+            alert("Error al cargar la tarjeta. Asegúrate de que el archivo JSON esté accesible y que el ID exista.");
         }
+    } else {
+        alert("No se proporcionó un ID de tarjeta.");
     }
-
-    buttons.forEach(button => {
-        button.addEventListener("click", () => {
-            const action = button.textContent === "ABRIR";
-            toggleEnvelope(action);
-        });
-    });
 });

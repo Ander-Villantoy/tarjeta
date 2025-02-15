@@ -1,0 +1,16 @@
+{
+  "tarjeta1": {
+    "from": "Ander",
+    "to": "Cristina 💌",
+    "msg": "Hola hermosa, te amo demasiado...\\nPor eso cada vez que te veo,\\nMi mundo se detiene. 💖",
+    "tipo": "romántica",
+    "color": "#ff4b4b"
+  },
+  "tarjeta2": {
+    "from": "Ander",
+    "to": "Jeny 🌺",
+    "msg": "Hola hermana\\n Sólo quiero darte las gracias\\n por toda la ayuda.🤗",
+    "tipo": "amistad",
+    "color": "#4baeff"
+  }
+}
