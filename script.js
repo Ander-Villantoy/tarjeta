@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         try {
             let url;
             if (window.location.origin.includes("github.io")) {
-                url = `${window.location.origin}/data/tarjetas.json`;
+                url = `https://ander-villantoy.github.io/tarjeta/data/tarjetas.json`;
             } else {
                 const path = window.location.pathname.replace(/\/index.html$/, '');
-                url = `${window.location.origin}${path}/data/tarjetas.json`;
+                url = `https://ander-villantoy.github.io/tarjeta/data/tarjetas.json`;
             }
 
             const response = await fetch(url);
