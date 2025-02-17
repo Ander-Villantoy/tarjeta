@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const textoSobre = document.querySelector(".solapaSuperior h2");
   const textoCarta = document.querySelector(".carta .texto h2");
   const buttons = document.querySelectorAll("button");
-  let loopAudio = new Audio("audio/loop.mp3");
-  let formalAudio = new Audio("audio/formal.wav"); // Ruta corregida
+  let loopAudio = new Audio("/audio/loop.mp3");
+  let formalAudio = new Audio("/audio/formal.wav"); // Ruta corregida
   loopAudio.loop = true;
 
   const params = new URLSearchParams(window.location.search);
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           if (tarjeta.tipo === 'formal') {
             formalAudio.play();
           } else {
-            new Audio("/cartas/audio/open.wav").play();
+            new Audio("/audio/open.wav").play();
           }
           setTimeout(() => {
             sobre.classList.add("open");
