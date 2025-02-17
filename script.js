@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Generar enlace
   const generarEnlace = (id) => {
-    const url = `http://localhost:3000/cartas/index.html?id=${id}`;
+    const url = `https://github.com/Ander-Villantoy/tarjeta/tree/main/cartas/index.html?id=${id}`;
     enlace.textContent = url;
     enlace.href = url;
     whatsappBtn.href = `https://wa.me/?text=${encodeURIComponent(url)}`;
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
       permanente: false
     };
 
-    fetch('data/tarjetas.json')
+    fetch('https://github.com/Ander-Villantoy/tarjeta/tree/main/data/tarjetas.json')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         const id = `tarjeta${Math.floor(Math.random() * 10000)}`;
         data[id] = nuevaTarjeta;
-        return fetch('data/tarjetas.json', {
+        return fetch('https://github.com/Ander-Villantoy/tarjeta/tree/main/data/tarjetas.json', {
           headers: {
             'Content-Type': 'application/json'
           },
