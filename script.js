@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Generar enlace
   const generarEnlace = (id) => {
-    const url = `https://github.com/Ander-Villantoy/tarjeta/tree/main/cartas/index.html?id=${id}`;
+    const url = `https://ander-villantoy.github.io/tarjeta/index.html?id=${id}`;
     enlace.textContent = url;
     enlace.href = url;
     whatsappBtn.href = `https://wa.me/?text=${encodeURIComponent(url)}`;
