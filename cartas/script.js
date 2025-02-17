@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const textoSobre = document.querySelector(".solapaSuperior h2");
   const textoCarta = document.querySelector(".carta .texto h2");
   const buttons = document.querySelectorAll("button");
-  let loopAudio = new Audio("/cartas/audio/loop.mp3");
-  let formalAudio = new Audio("/cartas/audio/formal.wav");
+  let loopAudio = new Audio("audio/loop.mp3");
+  let formalAudio = new Audio("audio/formal.wav"); // Ruta corregida
   loopAudio.loop = true;
 
   const params = new URLSearchParams(window.location.search);
