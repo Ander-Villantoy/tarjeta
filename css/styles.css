@@ -393,12 +393,25 @@ fieldset label:hover {
 }
 
 @media screen and (max-width: 360px) {
-     form input, form textarea {
-        font-size: 9px;
+form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+  width: 100%;
+  max-width: 200px;
+  
+      }
+  
+  form label {
+          font-size: 13px;
+}
+  
+  form input, form textarea {
+        font-size: 10px;
     }
 
     form button {
-        font-size: 10px;
+        font-size: 14px;
     }
 }
 
