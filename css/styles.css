@@ -395,7 +395,6 @@ fieldset label:hover {
 @media screen and (max-width: 360px) {
  section {
     min-height: 90vh;
-    max-width:  80vw;
   }
   .formulario-section {
     min-height: 90vh;
