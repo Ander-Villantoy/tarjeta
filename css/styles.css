@@ -393,7 +393,14 @@ fieldset label:hover {
 }
 
 @media screen and (max-width: 360px) {
- section {
+ body {
+    width: 100vw;
+    grid-template-rows: 50px 50px 50px 1fr 50px 50px 50px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "section";
+      }
+  section {
     min-height: 90vh;
   }
   .formulario-section {
