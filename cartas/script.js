@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     try {
       const url = `https://github.com/Ander-Villantoy/tarjeta/tree/main/data/tarjetas.json`;
 
-      const response = await fetch(url);
+      const response = await fetch(url, { mode: 'no-cors' });
       if (!response.ok) throw new Error('No se pudo cargar el archivo JSON.');
       const data = await response.json();
 
