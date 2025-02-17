@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const textoSobre = document.querySelector(".solapaSuperior h2");
   const textoCarta = document.querySelector(".carta .texto h2");
   const buttons = document.querySelectorAll("button");
-  let loopAudio = new Audio("Ander-Villantoy/tarjeta/cartas/audio/loop.mp3"); // Ruta corregida
+  let loopAudio = new Audio("audio/loop.mp3"); // Ruta corregida
   let formalAudio = new Audio("Ander-Villantoy/tarjeta/cartas/audio/formal.wav"); // Ruta corregida
   loopAudio.loop = true;
 
