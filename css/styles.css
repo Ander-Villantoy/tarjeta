@@ -394,11 +394,11 @@ fieldset label:hover {
 
 @media screen and (max-width: 360px) {
   section {
-    min-height: 60vh;
+    min-height: 70vh;
     max-width:  70vh;
   }
   #formulario-section {
-    padding: 5% 10%;
+    padding: 10%;
   }
 
   .formulario {
@@ -406,11 +406,11 @@ fieldset label:hover {
   }
 
     form input, form textarea {
-        font-size: 10px;
+        font-size: 9px;
     }
 
     form button {
-        font-size: 12px;
+        font-size: 10px;
     }
 }
 
