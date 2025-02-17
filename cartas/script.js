@@ -13,9 +13,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (id) {
     try {
-      const url = `https://github.com/Ander-Villantoy/tarjeta/tree/main/data/tarjetas.json`;
+      // Cambiar la URL para usar un servidor intermedio
+      const url = `https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Ander-Villantoy/tarjeta/main/data/tarjetas.json`;
 
-      const response = await fetch(url, { mode: 'no-cors' });
+      const response = await fetch(url);
       if (!response.ok) throw new Error('No se pudo cargar el archivo JSON.');
       const data = await response.json();
 
