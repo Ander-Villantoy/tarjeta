@@ -398,6 +398,7 @@ fieldset label:hover {
     max-width:  70vh;
   }
   #formulario-section {
+    min-height: 90vh
     padding: 10%;
   }
 
