@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const textoCarta = document.querySelector(".carta .texto h2");
   const buttons = document.querySelectorAll("button");
   let loopAudio = new Audio("audio/loop.mp3"); // Ruta corregida
-  let formalAudio = new Audio("audio/formal.wav"); // Ruta corregida
+  let formalAudio = new Audio("Ander-Villantoy/tarjeta/cartas/audio/formal.wav"); // Ruta corregida
   loopAudio.loop = true;
 
   const params = new URLSearchParams(window.location.search);
