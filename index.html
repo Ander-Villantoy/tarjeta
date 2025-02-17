@@ -1,47 +1,78 @@
+<!-- index.html - Optimizado: Mejora de carga y accesibilidad -->
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Te Amo</title>
-    <!-- Enlaces a CSS -->
+    <meta name="description" content="Generador de tarjetas interactivas: Románticas, de Amistad y Formales">
+    <title>Generador de Tarjetas</title>
+    <!-- Enlaces al CSS: Reset separado para claridad -->
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Fuentes de Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
-   <!-- Icono de Navegador -->
-    <link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
-    <link rel="manifest" href="icon/site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Icono de Navegador -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/cartas/icon/escritura.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/cartas/icon/escritura.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/cartas/icon/escritura.png">
+    <link rel="manifest" href="/cartas/icon/site.webmanifest">
 </head>
 
 <body>
+    <section id="inicio">
+        <h1>Bienvenido al Generador de Tarjetas</h1>
+        <button id="bajarFormulario">Crear Tarjeta</button>
+    </section>
 
-    <div class="sobre" id="sobre">
-        <div class="solapaSuperior">
-            <h2></h2>
-        </div>
-        <div class="solapaInferior"></div>
-        <div class="solapaLaterales"></div>
-        <div class="solapaFondo"></div>
-        <div class="carta">
-            <div class="texto">
-                <h2></h2>
-                <p></p>
-            </div>
-        </div>
+    <section id="formulario-section" role="form">
+        <h2>Crear Tarjeta Interactiva</h2>
+        <div id="contador">Tarjetas restantes: 7</div>
+
+        <form id="formulario" name="formulario">
+            <label for="remitente">Nombre del Remitente:</label>
+            <input type="text" id="remitente" name="remitente" required>
+
+            <label for="destinatario">Nombre del Destinatario:</label>
+            <input type="text" id="destinatario" name="destinatario" required>
+
+            <label for="mensaje">Mensaje (máx. 144 caracteres):</label>
+            <textarea id="mensaje" name="mensaje" maxlength="144" required></textarea>
+
+            <fieldset>
+                <legend>Tipo de Tarjeta:</legend>
+                <label for="romantica" class="romantica">
+                    <input type="radio" id="romantica" name="tipo" value="romantica" required>
+                    Romántica
+                </label>
+                <label for="amistad" class="amistad">
+                    <input type="radio" id="amistad" name="tipo" value="amistad" required>
+                    Amistad
+                </label>
+                <label for="formal" class="formal">
+                    <input type="radio" id="formal" name="tipo" value="formal" required>
+                    Formal
+                </label>
+            </fieldset>
+
+            <input type="hidden" id="tipo" name="tipo" value="">
+            <button id="submit" type="submit">Generar Tarjeta</button>
+        </form>
+    </section>
+
+    <div id="popup" class="popup oculto" role="dialog" aria-labelledby="popup-title">
+        <h2 id="popup-title">¡Tarjeta Generada!</h2>
+        <p id="enlace"></p>
+        <button id="copiar">Copiar</button>
+        <a id="whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i> Compartir
+        </a>
+        <button id="cerrarPopup">Cerrar</button>
+        <p class="aviso"></p>
     </div>
 
-    <div class="buttons">
-        <button>ABRIR</button>
-        <button>CERRAR</button>
-    </div>
-
-    <script src="script.js"></script>
+    <!-- Script optimizado con defer -->
+    <script src="script.js" defer></script>
 </body>
 
 </html>

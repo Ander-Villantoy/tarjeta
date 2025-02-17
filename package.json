@@ -1,0 +1,18 @@
+{
+  "name": "generador-de-tarjetas",
+  "version": "1.0.0",
+  "description": "Generador de tarjetas interactivas",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "json-server": "^1.0.0-beta.3"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

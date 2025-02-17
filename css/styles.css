@@ -1,183 +1,420 @@
-/* 🎨 Variables Globales */
+/* --- Variables Globales --- */
 :root {
-    --color-fondo: #f8f0e5;
-    --color-sobre: #d43f3f;
-    --color-solapa: #ff5e5e;
-    --color-lateral: #ff8a8a;
-    --color-texto: #000;
-    --fuente-principal: "Dancing Script", cursive;
+  --color-primario: #7b68ee;
+  --color-secundario: #5a50c4;
+  --color-fondo: #f7f3fc;
+  --color-sombra: rgba(0, 0, 0, 0.1);
+  --color-hover: #483d8b;
+  --color-inicio-btn: #6a5acd;
+  --color-inicio-btn-hover: #483d8b;
 }
 
-/* 📌 Estilos Generales */
+/* --- General --- */
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  height: 100%;
+  overflow-y: scroll;
+}
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: var(--color-fondo);
-    font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif;
+  background-color: var(--color-fondo);
+  color: #333;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+section {
+  scroll-snap-align: start;
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-/* 📌 Sobre */
-.sobre {
-    position: relative;
-    width: 375px;
-    height: 270px;
-    border-radius: 16px;
+/* --- Sección de Inicio --- */
+#inicio {
+  background: linear-gradient(135deg, #e0d4ff, #c7b8f3);
+  text-align: center;
+  padding: 60px 20px;
+  color: #2c2c54;
+  font-size: 2rem;
+  font-weight: bold;
+  transition: transform 0.3s ease-in-out;
+}
+#inicio h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #4b0082;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+}
+#inicio button {
+  padding: 14px 28px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  background-color: var(--color-inicio-btn);
+  border-radius: 25px;
+  border: none;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer;
+}
+#inicio button:hover {
+  background-color: var(--color-inicio-btn-hover);
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
 }
 
-/* 📌 Solapas */
-.solapaSuperior,
-.solapaInferior,
-.solapaLaterales,
-.solapaFondo {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
+/* --- Formulario --- */
+#formulario-section {
+  padding: 5% 10%;
+  background: linear-gradient(135deg, #f0f4ff, #dbe4ff);
+  border-radius: 25px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.3s ease-in-out;
+}
+#formulario-section:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+}
+#formulario-section h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #4a4a8a;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+}
+#contador {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #5a50c4;
+  background-color: #e8eaff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-align: center;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+form {
+  max-width: 580px;
+  padding: 40px;
+  border-radius: 20px;
+  background-color: #fefefe;
+  box-shadow: 0 5px 15px var(--color-sombra);
+  transition: all 0.3s ease;
+}
+form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+form label, legend {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #4a4a8a;
+  margin-bottom: 8px;
+  display: block;
+}
+form input, form textarea, form button{
+  padding: 14px;
+  font-size: 1rem;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  margin-bottom: 18px;
+  transition: border-color 0.3s;
+  width: 80%;
+}
+form input:focus, form textarea:focus {
+  border-color: var(--color-primario);
+  box-shadow: 0 0 8px rgba(123, 104, 238, 0.2);
+  outline: none;
+}
+#submit {
+  display: block;
+  margin: 20px auto;
+  background-color: #7b68ee;
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+#submit:hover {
+  background-color: #5a50c4;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
 }
 
-.solapaSuperior {
-    background: var(--color-sobre);
-    text-align: center;
-    font-family: var(--fuente-principal);
-    font-size: 30px;
-    clip-path: polygon(0% 0%, 100% 0%, 50% 50%);
-    transition: transform 0.5s ease-in-out;
-    transform-origin: top;
-    z-index: 5;
+/* --- Popup --- */
+#popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  animation: popupShow 0.3s ease-out;
+  text-align: center;
+  max-width: 90%;
+  width: 400px;
+}
+#popup h2 {
+  font-size: 2rem;
+  color: var(--color-primario);
+  margin-bottom: 20px;
+}
+#popup p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+#popup p#enlace {
+  font-size: 1rem;
+  color: var(--color-primario);
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 10px;
+  word-break: break-all;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#popup button, #popup a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 10px 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  background-color: var(--color-primario);
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  text-decoration: none;
+}
+#popup button:hover, #popup a:hover {
+  background-color: var(--color-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+#popup .aviso {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 10px;
 }
 
-.solapaSuperior h2 {
-    margin-top: 5%;
-    color: #f8f0e5;
+/* --- Botones de Tarjeta --- */
+/* Estilo general para la sección de tipos de tarjeta */
+fieldset {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  border: none;
 }
 
-.solapaInferior {
-    background: var(--color-solapa);
-    clip-path: polygon(0% 100%, 50% 50%, 100% 100%);
-    z-index: 4;
+/* Estilo para las etiquetas asociadas a los inputs radio */
+fieldset label {
+  display: inline-block;
+  width: 100%;
+  max-width: 200px;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer;
+  position: relative;
+  border-radius: 20px;
+  border: 2px solid;
 }
 
-.solapaLaterales {
-    background: var(--color-lateral);
-    clip-path: polygon(0% 0%, 50% 50%, 100% 0%, 100% 100%, 0% 100%);
-    z-index: 3;
+/* Colores específicos según tipo de tarjeta */
+.romantica {
+  background-color: #ffb3ba;
+  border-color: #ff9aa2;
+  color: #7a1c1c;
 }
 
-.solapaFondo {
-    background: var(--color-solapa);
-    z-index: 1;
+.amistad {
+  background-color: #baffc9;
+  border-color: #a1ffaf;
+  color: #1c7a3e;
 }
 
-/* 📌 Carta */
-.carta {
-    position: absolute;
-    top: -5%;
-    left: 2.5%;
-    width: 85%;
-    height: 80%;
-    padding: 20px;
-    background: white;
-    text-align: center;
-    font-family: var(--fuente-principal);
-    font-size: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.6s ease-in-out, opacity 0.4s;
-    opacity: 0;
-    z-index: 2;
+.formal {
+  background-color: #bae1ff;
+  border-color: #a1d0ff;
+  color: #1c3e7a;
 }
 
-.texto h2{
-    padding-bottom: 10px;
+/* Efecto hover */
+fieldset label:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* 📌 Botones */
-.buttons {
-    margin-top: 20px;
+/* --- Colores según Tipo de Tarjeta --- */
+:root {
+  --color-romantica-bg: #ffb3ba;
+  --color-romantica-text: #7a1c1c;
+  --color-romantica-border: #ff9aa2;
+
+  --color-amistad-bg: #baffc9;
+  --color-amistad-text: #1c7a3e;
+  --color-amistad-border: #a1ffaf;
+
+  --color-formal-bg: #bae1ff;
+  --color-formal-text: #1c3e7a;
+  --color-formal-border: #a1d0ff;
+}
+.tipoTarjeta .romantica {
+  background-color: var(--color-romantica-bg);
+  color: var(--color-romantica-text);
+  border-color: var(--color-romantica-border);
+}
+.tipoTarjeta .amistad {
+  background-color: var(--color-amistad-bg);
+  color: var(--color-amistad-text);
+  border-color: var(--color-amistad-border);
+}
+.tipoTarjeta .formal {
+  background-color: var(--color-formal-bg);
+  color: var(--color-formal-text);
+  border-color: var(--color-formal-border);
 }
 
-button {
-    padding: 12px 24px;
-    margin: 5px;
-    border: 2px solid var(--color-sobre);
-    background: transparent;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-    border-radius: 8px;
+/* --- Cambios de Estilo para Formulario según Selección --- */
+#formulario[data-theme="romantica"] {
+  background-color: var(--color-romantica-bg);
+  border-color: var(--color-romantica-border);
+  color: var(--color-romantica-text);
+}
+#formulario[data-theme="amistad"] {
+  background-color: var(--color-amistad-bg);
+  border-color: var(--color-amistad-border);
+  color: var(--color-amistad-text);
+}
+#formulario[data-theme="formal"] {
+  background-color: var(--color-formal-bg);
+  border-color: var(--color-formal-border);
+  color: var(--color-formal-text);
 }
 
-button:hover {
-    background: var(--color-sobre);
-    color: white;
-    transform: scale(1.05);
+/* --- Efecto para Botón Activo --- */
+.tipoTarjeta button.active {
+  border-width: 3px;
+  border-color: white;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* 📌 Estados */
-.open .solapaSuperior {
-    transform: rotateX(180deg);
-    z-index: 1;
-}
-
-.open .carta {
-    transform: translate(0%, -50%);
-    opacity: 1;
-    z-index: 2;
+/* --- Animaciones --- */
+@keyframes popupShow {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 /* 📌 Ajustes Responsivos */
-@media screen and (max-width: 480px) {
-    .sobre {
-        width: 90%;
-        max-width: 280px;
-        height: 220px; /* Evita que se colapse */
+@media screen and (max-width: 768px) {
+  section {
+    min-height: 82.5vh;
+  }
+  #formulario-section {
+    padding: 10%;
+  }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .carta {
-        width: 80%;
-        left: 5%;
-        max-width: 240px;
-        font-size: 14px;
+    form label {
+        width: 100%;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    form input, form textarea {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    form fieldset {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    form fieldset label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    form button {
+        width: 100%;
         padding: 12px;
-        transform: translateY(-10%); /* Evita que desaparezca */
+        font-size: 18px;
     }
 
-    .solapaSuperior h2 {
-        font-size: 24px;
+    #contador {
+        margin-bottom: 10px;
     }
+}
 
-    button {
-        padding: 10px 18px;
+@media screen and (max-width: 480px) {
+  section {
+    min-height: 85vh;
+  }
+  #formulario-section {
+    padding: 15%;
+  }
+
+    form input, form textarea {
         font-size: 14px;
+    }
+
+    form button {
+        font-size: 16px;
     }
 }
 
 @media screen and (max-width: 360px) {
-    .sobre {
-        transform: scale(90%);
-        width: 95vw;
-        max-width: 330px;
-        
+  section {
+    min-height: 80vh;
+    max-width:  70vh;
+  }
+  #formulario-section {
+    padding: 5% 10%;
+  }
+
+  .formulario {
+    max-width:  50%;
+  }
+
+    form input, form textarea {
+        font-size: 10px;
     }
 
-    .carta {
-        font-size: 18px;
-        padding: 10px;
-        width: 95%;
-        left: 7.5%;
-    }
-
-    button {
+    form button {
         font-size: 12px;
-        padding: 8px 16px;
     }
 }
+
+
 
 .boton-amistad {
     border: 2px solid #264d38;
@@ -185,6 +422,17 @@ button:hover {
 
 .boton-amistad:hover {
     background: #264d38;
+    color: white;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.boton-formal {
+    border: 2px solid #5eb3da;
+}
+
+.boton-formal:hover {
+    background: #5eb3da;
     color: white;
     transform: scale(1.05);
     transition: all 0.3s ease;

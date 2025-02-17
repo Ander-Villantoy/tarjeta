@@ -1,82 +1,107 @@
-// script.js ajustado para que loop.mp3 solo funcione en tarjetas románticas
-document.addEventListener("DOMContentLoaded", async () => {
-    const sobre = document.getElementById("sobre");
-    const solapas = document.querySelectorAll(".solapaSuperior, .solapaInferior, .solapaLaterales, .solapaFondo");
-    const textoSobre = document.querySelector(".solapaSuperior h2");
-    const textoCarta = document.querySelector(".carta .texto h2");
-    const buttons = document.querySelectorAll("button");
-    let loopAudio = new Audio("audio/loop.mp3");
-    loopAudio.loop = true;
+document.addEventListener("DOMContentLoaded", () => {
+  const formulario = document.getElementById("formulario");
+  const popup = document.getElementById("popup");
+  const submitBtn = document.getElementById("submit");
+  const cerrarPopup = document.getElementById("cerrarPopup");
+  const tipoTarjeta = document.querySelectorAll('input[name="tipo"]');
+  const contador = document.getElementById("contador");
+  const btnBajar = document.getElementById("bajarFormulario");
+  const enlace = document.getElementById("enlace");
+  const copiarBtn = document.getElementById("copiar");
+  const whatsappBtn = document.getElementById("whatsapp");
+  let tarjetasHechas = 0;
 
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id');
+  btnBajar?.addEventListener("click", () => {
+    document.getElementById("formulario-section")?.scrollIntoView({ behavior: "smooth" });
+  });
 
-    if (id) {
-        try {
-            let url;
-            if (window.location.origin.includes("github.io")) {
-                url = `${window.location.origin}/data/tarjetas.json`;
-            } else {
-                const path = window.location.pathname.replace(/\/index.html$/, '');
-                url = `${window.location.origin}${path}/data/tarjetas.json`;
-            }
+  popup.style.display = "none";
 
-            const response = await fetch(url);
-            if (!response.ok) throw new Error('No se pudo cargar el archivo JSON.');
-            const data = await response.json();
+  tipoTarjeta.forEach(radio => {
+    radio.addEventListener("change", (e) => {
+      formulario.dataset.theme = e.target.value;
+    });
+  });
 
-            const tarjeta = data[id];
-            if (!tarjeta) throw new Error('No se encontró la tarjeta con el ID proporcionado.');
-
-            textoSobre.textContent = `De: ${tarjeta.from}`;
-            textoCarta.textContent = `Para: ${tarjeta.to}`;
-            document.querySelector(".carta .texto p").innerHTML = tarjeta.msg.replace(/\\n/g, '<br>');
-
-            if (tarjeta.tipo === 'romántica') {
-                solapas.forEach(solapa => solapa.style.backgroundColor = '');
-                textoSobre.style.color = '';
-                textoCarta.style.color = '';
-            } else if (tarjeta.tipo === 'amistad') {
-                const verdes = ['#a8d5ba', '#8fcba9', '#76bf8a', '#5eb36b'];
-                solapas.forEach((solapa, index) => solapa.style.backgroundColor = verdes[index % verdes.length]);
-                textoSobre.style.color = '#a17c2b';
-                textoCarta.style.color = '#a17c2b';
-                buttons.forEach(button => button.classList.add('boton-amistad'));
-            } else if (tarjeta.color) {
-                solapas.forEach(solapa => solapa.style.backgroundColor = tarjeta.color);
-                textoSobre.style.color = '#000';
-                textoCarta.style.color = '#000';
-            }
-
-            function toggleEnvelope(open) {
-                if (open) {
-                    new Audio("audio/open.wav").play();
-                    setTimeout(() => {
-                        sobre.classList.add("open");
-                        if (tarjeta.tipo === 'romántica') loopAudio.play();
-                    }, 250);
-                } else {
-                    new Audio("audio/close.wav").play();
-                    setTimeout(() => {
-                        sobre.classList.remove("open");
-                        loopAudio.pause();
-                        loopAudio.currentTime = 0;
-                    }, 1000);
-                }
-            }
-
-            buttons.forEach(button => {
-                button.addEventListener("click", () => {
-                    const action = button.textContent === "ABRIR";
-                    toggleEnvelope(action);
-                });
-            });
-
-        } catch (error) {
-            console.error(error);
-            alert("Error al cargar la tarjeta. Asegúrate de que el archivo JSON esté accesible y que el ID exista.");
-        }
+  submitBtn?.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (formulario.checkValidity()) {
+      tarjetasHechas++;
+      contador.textContent = `Tarjetas restantes: ${7 - tarjetasHechas}`;
+      if (tarjetasHechas <= 7) {
+        almacenarTarjeta();
+      } else {
+        alert("Máximo de 7 tarjetas alcanzado.");
+      }
     } else {
-        alert("No se proporcionó un ID de tarjeta.");
+      alert("Completa todos los campos requeridos.");
     }
+  });
+
+  const mostrarPopup = () => {
+    popup.classList.remove("oculto");
+    popup.style.display = "block";
+  };
+
+  cerrarPopup?.addEventListener("click", () => {
+    popup.classList.add("oculto");
+    popup.style.display = "none";
+  });
+
+  const generarEnlace = (id) => {
+    const url = `https://ander-villantoy.github.io/tarjeta/cartas/index.html?id=${id}`;
+    enlace.textContent = url;
+    enlace.href = url;
+    whatsappBtn.href = `https://wa.me/?text=${encodeURIComponent(url)}`;
+  };
+
+  copiarBtn?.addEventListener("click", () => {
+    navigator.clipboard.writeText(enlace.textContent).then(() => {
+      alert("Enlace copiado al portapapeles");
+    });
+  });
+
+  const almacenarTarjeta = () => {
+    const remitente = formulario.remitente.value;
+    const destinatario = formulario.destinatario.value;
+    const mensaje = formulario.mensaje.value;
+    const tipo = formulario.tipo.value;
+    const nuevaTarjeta = {
+      from: remitente,
+      to: destinatario,
+      msg: mensaje,
+      tipo: tipo,
+      color: tipo === "romántica" ? "#ff4b4b" : "#4baeff",
+      fechaCreacion: new Date().toISOString(),
+      permanente: false
+    };
+
+    fetch('https://ander-villantoy.github.io/tarjeta/data/tarjetas.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        const id = `tarjeta${Math.floor(Math.random() * 10000)}`;
+        data[id] = nuevaTarjeta;
+        return fetch('https://ander-villantoy.github.io/tarjeta/data/tarjetas.json', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        }).then(() => id);
+      })
+      .then(id => {
+        console.log('Tarjeta almacenada correctamente');
+        mostrarPopup();
+        generarEnlace(id);
+      })
+      .catch(error => {
+        console.error('Error al almacenar la tarjeta:', error);
+        alert('Error al almacenar la tarjeta. Por favor, intenta nuevamente.');
+      });
+  };
 });

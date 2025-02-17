@@ -2,15 +2,28 @@
   "tarjeta1": {
     "from": "Ander",
     "to": "Cristina 💌",
-    "msg": "Hola hermosa, te amo demasiado...\\nPor eso cada vez que te veo,\\nMi mundo se detiene. 💖",
+    "msg": "Hola hermosa, te amo demasiado...\nPor eso cada vez que te veo,\nMi mundo se detiene. 💖",
     "tipo": "romántica",
-    "color": "#ff4b4b"
+    "color": "#ff4b4b",
+    "fechaCreacion": "2023-10-01T00:00:00Z",
+    "permanente": true
   },
   "tarjeta2": {
     "from": "Ander",
     "to": "Jeny 🌺",
-    "msg": "Hola hermana\\n Sólo quiero darte las gracias\\n por toda la ayuda.🤗",
+    "msg": "Hola hermana\n Sólo quiero darte las gracias\n por toda la ayuda.🤗",
     "tipo": "amistad",
-    "color": "#4baeff"
+    "color": "#4baeff",
+    "fechaCreacion": "2023-10-01T00:00:00Z",
+    "permanente": true
+  },
+  "tarjeta3": {
+    "from": "Ander",
+    "to": "Jenny L. Zegarra",
+    "msg": "Hola señora\n Le escribo sólo para darle las gracias\n por toda la ayuda.🤗",
+    "tipo": "formal",
+    "color": "#4baeff",
+    "fechaCreacion": "2023-10-01T00:00:00Z",
+    "permanente": true
   }
 }
