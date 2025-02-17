@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (id) {
     try {
-      const url = `https://ander-villantoy.github.io/tarjeta/data/tarjetas.json`;
+      const url = `http://localhost:3000/tarjetas`;
 
       const response = await fetch(url);
       if (!response.ok) throw new Error('No se pudo cargar el archivo JSON.');

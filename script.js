@@ -11,18 +11,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const whatsappBtn = document.getElementById("whatsapp");
   let tarjetasHechas = 0;
 
+  // Smooth scroll al formulario
   btnBajar?.addEventListener("click", () => {
     document.getElementById("formulario-section")?.scrollIntoView({ behavior: "smooth" });
   });
 
+  // Inicializar estado del popup
   popup.style.display = "none";
 
+  // Evento de selección de tipo de tarjeta
   tipoTarjeta.forEach(radio => {
     radio.addEventListener("change", (e) => {
       formulario.dataset.theme = e.target.value;
     });
   });
 
+  // Evento de envío del formulario con contador
   submitBtn?.addEventListener("click", (e) => {
     e.preventDefault();
     if (formulario.checkValidity()) {
@@ -38,29 +42,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Mostrar popup
   const mostrarPopup = () => {
     popup.classList.remove("oculto");
     popup.style.display = "block";
   };
 
+  // Ocultar popup
   cerrarPopup?.addEventListener("click", () => {
     popup.classList.add("oculto");
     popup.style.display = "none";
   });
 
+  // Generar enlace
   const generarEnlace = (id) => {
-    const url = `https://ander-villantoy.github.io/tarjeta/cartas/index.html?id=${id}`;
+    const url = `http://localhost:3000/cartas/index.html?id=${id}`;
     enlace.textContent = url;
     enlace.href = url;
     whatsappBtn.href = `https://wa.me/?text=${encodeURIComponent(url)}`;
   };
 
+  // Copiar enlace al portapapeles
   copiarBtn?.addEventListener("click", () => {
     navigator.clipboard.writeText(enlace.textContent).then(() => {
       alert("Enlace copiado al portapapeles");
     });
   });
 
+  // Almacenar tarjeta en tarjetas.json
   const almacenarTarjeta = () => {
     const remitente = formulario.remitente.value;
     const destinatario = formulario.destinatario.value;
@@ -76,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
       permanente: false
     };
 
-    fetch('https://ander-villantoy.github.io/tarjeta/data/tarjetas.json')
+    fetch('http://localhost:3000/tarjetas')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -86,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         const id = `tarjeta${Math.floor(Math.random() * 10000)}`;
         data[id] = nuevaTarjeta;
-        return fetch('https://ander-villantoy.github.io/tarjeta/data/tarjetas.json', {
+        return fetch('http://localhost:3000/tarjetas', {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
