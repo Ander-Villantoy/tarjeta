@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
       permanente: false
     };
 
-    fetch('https://raw.githubusercontent.com/Ander-Villantoy/tarjeta/main/tarjetas.json')
+    fetch('data/tarjetas.json')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -95,8 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         const id = `tarjeta${Math.floor(Math.random() * 10000)}`;
         data[id] = nuevaTarjeta;
-        return fetch('https://raw.githubusercontent.com/Ander-Villantoy/tarjeta/main/tarjetas.json', {
-          method: 'PUT',
+        return fetch('data/tarjetas.json', {
           headers: {
             'Content-Type': 'application/json'
           },
