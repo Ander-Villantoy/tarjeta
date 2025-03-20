@@ -1,6 +1,6 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from "../node_modules/firebase/app";
+import { getFirestore, collection, addDoc } from "../node_modules/firebase/firestore";
+import { getAnalytics } from "../node_modules/firebase/analytics";
 
 document.addEventListener("DOMContentLoaded", () => {
   const formulario = document.getElementById("formulario");
