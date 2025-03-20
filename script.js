@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
 
 document.addEventListener("DOMContentLoaded", () => {
   const formulario = document.getElementById("formulario");
@@ -26,6 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
+
+  // Inicializar Analytics
+  const analytics = getAnalytics(app);
 
   // Smooth scroll al formulario
   btnBajar?.addEventListener("click", () => {
