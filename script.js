@@ -1,3 +1,6 @@
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+
 document.addEventListener("DOMContentLoaded", () => {
   const formulario = document.getElementById("formulario");
   const popup = document.getElementById("popup");
@@ -10,6 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const copiarBtn = document.getElementById("copiar");
   const whatsappBtn = document.getElementById("whatsapp");
   let tarjetasHechas = 0;
+
+  // Configuración de Firebase
+  const firebaseConfig = {
+    apiKey: "TU_API_KEY",
+    authDomain: "TU_AUTH_DOMAIN",
+    projectId: "TU_PROJECT_ID",
+    storageBucket: "TU_STORAGE_BUCKET",
+    messagingSenderId: "TU_MESSAGING_SENDER_ID",
+    appId: "TU_APP_ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
   // Smooth scroll al formulario
   btnBajar?.addEventListener("click", () => {
@@ -24,6 +40,22 @@ document.addEventListener("DOMContentLoaded", () => {
     radio.addEventListener("change", (e) => {
       formulario.dataset.theme = e.target.value;
     });
+  });
+
+  // Validar longitud del mensaje en tiempo real
+  const mensajeInput = formulario.mensaje;
+  mensajeInput.addEventListener("input", () => {
+    const maxLength = 144;
+    const currentLength = mensajeInput.value.length;
+
+    if (currentLength > maxLength) {
+      mensajeInput.value = mensajeInput.value.slice(0, maxLength);
+    }
+
+    const aviso = document.querySelector(".aviso");
+    if (aviso) {
+      aviso.textContent = `Caracteres restantes: ${maxLength - currentLength}`;
+    }
   });
 
   // Evento de envío del formulario con contador
@@ -69,8 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Almacenar tarjeta en tarjetas.json
-  const almacenarTarjeta = () => {
+  // Almacenar tarjeta en Firestore
+  const almacenarTarjeta = async () => {
     const remitente = formulario.remitente.value;
     const destinatario = formulario.destinatario.value;
     const mensaje = formulario.mensaje.value;
@@ -85,32 +117,14 @@ document.addEventListener("DOMContentLoaded", () => {
       permanente: false
     };
 
-    fetch('https://ander-villantoy.github.io/tarjeta/data/tarjetas.json')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        const id = `tarjeta${Math.floor(Math.random() * 10000)}`;
-        data[id] = nuevaTarjeta;
-        return fetch('https://ander-villantoy.github.io/tarjeta/data/tarjetas.json', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        }).then(() => id);
-      })
-      .then(id => {
-        console.log('Tarjeta almacenada correctamente');
-        mostrarPopup();
-        generarEnlace(id);
-      })
-      .catch(error => {
-        console.error('Error al almacenar la tarjeta:', error);
-        alert('Error al almacenar la tarjeta. Por favor, intenta nuevamente.');
-      });
+    try {
+      const docRef = await addDoc(collection(db, "tarjetas"), nuevaTarjeta);
+      console.log("Tarjeta almacenada con ID:", docRef.id);
+      mostrarPopup();
+      generarEnlace(docRef.id);
+    } catch (error) {
+      console.error("Error al almacenar la tarjeta:", error);
+      alert("Error al almacenar la tarjeta. Por favor, intenta nuevamente.");
+    }
   };
 });
