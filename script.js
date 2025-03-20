@@ -16,12 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Configuración de Firebase
   const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_AUTH_DOMAIN",
-    projectId: "TU_PROJECT_ID",
-    storageBucket: "TU_STORAGE_BUCKET",
-    messagingSenderId: "TU_MESSAGING_SENDER_ID",
-    appId: "TU_APP_ID"
+  apiKey: "AIzaSyCu36C03AgU9fKJQZF_nc5Vcxl_ISV6Tjw",
+  authDomain: "tarjeta-100.firebaseapp.com",
+  projectId: "tarjeta-100",
+  storageBucket: "tarjeta-100.firebasestorage.app",
+  messagingSenderId: "1096191018262",
+  appId: "1:1096191018262:web:14d2e5867eb64e9b6bbc37",
   };
 
   const app = initializeApp(firebaseConfig);
