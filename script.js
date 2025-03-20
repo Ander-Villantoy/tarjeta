@@ -1,6 +1,6 @@
-import { initializeApp } from "../node_modules/firebase/app";
-import { getFirestore, collection, addDoc } from "../node_modules/firebase/firestore";
-import { getAnalytics } from "../node_modules/firebase/analytics";
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
 
 document.addEventListener("DOMContentLoaded", () => {
   const formulario = document.getElementById("formulario");
@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Inicializar Analytics
   const analytics = getAnalytics(app);
+
+  console.log("Firebase inicializado correctamente:", app.name);
 
   // Smooth scroll al formulario
   btnBajar?.addEventListener("click", () => {
