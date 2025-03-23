@@ -136,3 +136,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  const bajarFormularioBtn = document.getElementById('bajarFormulario');
+  const formularioSection = document.getElementById('formulario-section');
+
+  bajarFormularioBtn.addEventListener('click', function () {
+    formularioSection.scrollIntoView({ behavior: 'smooth' }); // Desplaza suavemente al formulario
+  });
+});

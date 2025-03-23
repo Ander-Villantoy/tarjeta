@@ -37,12 +37,20 @@ section {
 
 /* --- Sección de Inicio --- */
 #inicio {
-  background: linear-gradient(135deg, #e0d4ff, #c7b8f3);
+  width: 100vw; /* Ocupa todo el ancho de la ventana */
+  height: 100vh; /* Ocupa todo el alto de la ventana */
+  display: flex; /* Centra el contenido */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #e0d4ff, #c7b8f3); /* Fondo degradado */
   text-align: center;
-  padding: 60px 20px;
   color: #2c2c54;
   font-size: 2rem;
   font-weight: bold;
+  margin: 0; /* Elimina márgenes */
+  padding: 0; /* Elimina relleno */
+  box-sizing: border-box; /* Asegura que el ancho y alto incluyan bordes y relleno */
   transition: transform 0.3s ease-in-out;
 }
 #inicio h1 {
